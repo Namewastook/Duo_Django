@@ -1,7 +1,89 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content3 %}
+<style>
 
+* {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
 <a href= {% url 'Pantry' %}><button>To Pantry</button></a>
+
+<form>
+
+            
+    First Name:
+    <input type="text" name="firstname">
+    <br>
+    <br>
+    Last Name:
+    <input type="text" name="lastname">
+    <br>
+    <br>
+    Username:
+    <input type="text" name="username">
+
+        <button onclick="myFunction()">Update</button>
+        <button onclick="myFunction()">Delete</button>
+</form>
+    <br>
+    <br>
+    <br>
+    <br>
+
+        
+    
+
+<textarea rows="4" cols="100" maxlength="100">
+"Tell us a little bit about you:"</textarea>
+    <br>
+    
+Do you have any of the following dietary preferences:
+    <br>
+
+    <div class="row">
+  <div class="column" style="background-color:yellow;">
+    <input type="checkbox"> Dairy-free
+    <br>
+    <input type="checkbox"> Egg-free
+    <br>
+    <input type="checkbox"> Fish-free
+  </div>
+  <div class="column" style="background-color:green;">
+    <input type="checkbox"> Gluten-free
+    <br>
+    <input type="checkbox"> Keto-friendly
+    <br>
+    <input type="checkbox"> Kosher-Kosher
+  </div>
+  <div class="column" style="background-color:blue;">
+  <input type="checkbox"> Peanuts-Peanuts
+    <br>
+    <input type="checkbox"> Vegan
+    <br>
+    <input type="checkbox"> Vegetarian
+  </div>
+</div>
+
+
+    
+    
+
+
 
 {% endblock content3 %}
