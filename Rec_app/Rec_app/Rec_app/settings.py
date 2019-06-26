@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'Profile.apps.ProfileConfig',
     'Pantry.apps.PantryConfig',
     'Recipe.apps.RecipeConfig',
+    'Accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -122,3 +123,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
