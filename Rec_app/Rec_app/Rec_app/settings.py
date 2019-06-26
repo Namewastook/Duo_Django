@@ -31,10 +31,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.Landing'
-    'django.contrib.Profile'
-    'django.contrib.Pantry'
-    'django.contrib.Recipe'
+    'Landing.apps.LandingConfig',
+    'Profile.apps.ProfileConfig',
+    'Pantry.apps.PantryConfig',
+    'Recipe.apps.RecipeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
