@@ -12,8 +12,29 @@
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
             crossorigin="anonymous"
         ></link>
+    <style>
+    .container {
+        position: relative;
+    }
+
+    .topright {
+    position: absolute;
+    top: 8px;
+    right: 64px;
+    font-size: 18px;
+    }
+
+    img { 
+    width: 100%;
+    height: auto;
+    opacity: 0.3;
+    }
+</style>
     </head>
-        <a href="{% url 'logout' %}"><button>Logout</button></a>
+
+        <div class="topright">a href="{% url 'logout' %}><button>Logout</button></a>
+        </div>
+
         {% block content %}
 
         {% endblock content %}
@@ -47,4 +68,15 @@
             crossorigin="anonymous"
         ></script>
     </body>
+
+    
 </html>
+
+
+
+<footer class="fixed-bottom"><footer class="text-center">
+        <p>
+            &copy; Recipe Locator app 2019
+        </p>
+</footer>
+
