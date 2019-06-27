@@ -1,0 +1,9 @@
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}! Welcome to our site!
+  <a href="{% url 'Profile' %}"><button>Profile</button></a>
+{% else %}
+  <p>Please Login To Continue</p>
+  <a href="{% url 'login' %}"><button>Login</button></a>
+{% endif %}
+{% endblock %}
