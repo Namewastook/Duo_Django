@@ -2,6 +2,31 @@
 {% load static %}
 {% block content4 %}
 
-<a href= {% url 'Pantry' %}><button>To Pantry</button></a>
+<a href= {% url 'Pantry' %}><button>Go back to the Pantry</button></a>
+<br>
+<br>
+<table>
+    {% if response %}
+    {% for label in response%}
+    <ol> {{label}} </ol>
+    {% endfor%}
+    {% endif %}
+</table>    
 
 {% endblock content4 %}
+
+
+{% comment %} new = req.get('hits')
+
+z = ["label", "yield", "calories"]
+a = ["label", "quantity", "unit"]
+n = ["FAT", "CHOCDF", "PROCNT"]
+
+for x, y in enumerate(new):
+    for i in z:
+        print(new[x]['recipe'][i])
+    for l in n:
+        for c in a:
+            print(new[x]['recipe']["totalNutrients"][l][c]) {% endcomment %}
+
+{% comment %} print(req.get("hits")[0].get('recipe').get('label')) {% endcomment %}
