@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from dataclasses import dataclass
+from. import models
 
 
 # Create your views here.
@@ -31,34 +32,20 @@ req = requests.get(
 
 # it didn't work the way I thought it would, may revisit later
 
-# This is how we get everything all at once!
+# This is how we get everything all at once! Thanks Justin!
 
 new = req.get('hits')
-count = 0
-for i in range(10):
-    print(new[count].get('recipe').get('label'))
-    print(new[count].get('recipe').get('yield'))
-    print(new[count].get('recipe').get((("calories"))))
-    print(new[count].get('recipe').get(
-        (("totalNutrients"))).get("FAT").get("label"))
-    print(new[count].get('recipe').get(
-        (("totalNutrients"))).get("FAT").get("quantity"))
-    print(new[count].get('recipe').get(
-        (("totalNutrients"))).get("FAT").get("unit"))
-    print(new[count].get('recipe').get(
-        (("totalNutrients"))).get("CHOCDF").get("label"))
-    print(new[count].get('recipe').get(
-        (("totalNutrients"))).get("CHOCDF").get("quantity"))
-    print(new[count].get('recipe').get(
-        (("totalNutrients"))).get("CHOCDF").get("unit"))
-    print(new[count].get('recipe').get(
-        (("totalNutrients"))).get("PROCNT").get("label"))
-    print(new[count].get('recipe').get(
-        (("totalNutrients"))).get("PROCNT").get("quantity"))
-    print(new[count].get('recipe').get(
-        (("totalNutrients"))).get("PROCNT").get("unit"))
 
-    count += 1
+z = ["label", "yield", "calories"]
+a = ["label", "quantity", "unit"]
+n = ["FAT", "CHOCDF", "PROCNT"]
+
+for x, y in enumerate(new):
+    for i in z:
+        print(new[x]['recipe'][i])
+    for l in n:
+        for c in a:
+            print(new[x]['recipe']["totalNutrients"][l][c])
 
 
 # This is how we get the Label(Name) of the recipe
