@@ -13,13 +13,13 @@ def index(request):
     return render(request, "Profile/profile.html")
 
 
-@login_required(login_url="/")
-def index(request):
-    return render(request, "Profile/profile.html")
+# @login_required(login_url="/")
+# def index(request):
+#     return render(request, "Profile/profile.html")
 
 
-req = requests.get(
-    "https://api.edamam.com/search?q=chicken&app_id=0890373f&app_key=5c5cb11c82dd77cd32e808aa96589367").json()
+# req = requests.get(
+#     "https://api.edamam.com/search?q=chicken&app_id=0890373f&app_key=5c5cb11c82dd77cd32e808aa96589367").json()
 
 
 # Working with dataclass to try to make this work
@@ -34,18 +34,18 @@ req = requests.get(
 
 # This is how we get everything all at once! Thanks Justin!
 
-new = req.get('hits')
+# new = req.get('hits')
 
-z = ["label", "yield", "calories"]
-a = ["label", "quantity", "unit"]
-n = ["FAT", "CHOCDF", "PROCNT"]
+# z = ["label", "yield", "calories"]
+# a = ["label", "quantity", "unit"]
+# n = ["FAT", "CHOCDF", "PROCNT"]
 
-for x, y in enumerate(new):
-    for i in z:
-        print(new[x]['recipe'][i])
-    for l in n:
-        for c in a:
-            print(new[x]['recipe']["totalNutrients"][l][c])
+# for x, y in enumerate(new):
+#     for i in z:
+#         print(new[x]['recipe'][i])
+#     for l in n:
+#         for c in a:
+#             print(new[x]['recipe']["totalNutrients"][l][c])
 
 
 # This is how we get the Label(Name) of the recipe
@@ -83,3 +83,5 @@ for x, y in enumerate(new):
 
 # # this is how we get the yield (number of servings)
 # print(req.get("hits")[0].get('recipe').get((("yield"))))
+# # This is how we get the Calories of the recipe
+# print(req.get("hits")[0].get('recipe').get((("calories"))))

@@ -7,10 +7,14 @@
 <br>
 <table>
     {% if response %}
-    {% for label in response%}
-    <ol> {{label}} </ol>
+    {% for i in response %}
+    <ol> {{i}} </ol>
     {% endfor%}
     {% endif %}
+
+    {% comment %} <h3> {{response}} </h3>
+    <h3> {{side}} </h3>
+    <h3> {{extras}} </h3> {% endcomment %}
 </table>    
 
 {% endblock content4 %}
