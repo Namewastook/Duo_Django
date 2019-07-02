@@ -1,9 +1,5 @@
 from django.contrib import admin
+from .models import FoodCombo
 
-# Register your models here.
 
-# model is for dietary checkboxes from profile
-
-# from .models import Profile
-
-# admin.site.register(Profile)
+admin.site.register(FoodCombo)
