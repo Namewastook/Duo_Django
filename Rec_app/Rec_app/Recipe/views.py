@@ -36,6 +36,12 @@ from .models import FoodCombo
 
 
 @login_required(login_url='/')
+def index(request):
+    return render(request, "Recipe/recipe.html")
+
+# def add_profile(request):
+#     if request.method =="POST":
+
 def testing(request):
     if request.method == "POST":
 
