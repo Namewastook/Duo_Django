@@ -5,32 +5,12 @@
 <a href= {% url 'Pantry' %}><button>Go back to the Pantry</button></a>
 <br>
 <br>
-<table>
+<table class="darkTable">
     {% if response %}
     {% for i in response %}
-    <ol> {{i}} </ol>
+    <td> {{i}} </td>
     {% endfor%}
     {% endif %}
-
-    {% comment %} <h3> {{response}} </h3>
-    <h3> {{side}} </h3>
-    <h3> {{extras}} </h3> {% endcomment %}
 </table>    
 
 {% endblock content4 %}
-
-
-{% comment %} new = req.get('hits')
-
-z = ["label", "yield", "calories"]
-a = ["label", "quantity", "unit"]
-n = ["FAT", "CHOCDF", "PROCNT"]
-
-for x, y in enumerate(new):
-    for i in z:
-        print(new[x]['recipe'][i])
-    for l in n:
-        for c in a:
-            print(new[x]['recipe']["totalNutrients"][l][c]) {% endcomment %}
-
-{% comment %} print(req.get("hits")[0].get('recipe').get('label')) {% endcomment %}
