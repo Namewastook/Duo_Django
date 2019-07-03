@@ -2,86 +2,47 @@ import requests
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from dataclasses import dataclass
-from. import models
-
-
+from .models import Profile
 # Create your views here.
+
 
 @login_required(login_url='/')
 def index(request):
     return render(request, "Profile/profile.html")
 
 
-# @login_required(login_url="/")
-# def index(request):
-#     return render(request, "Profile/profile.html")
+def add_profile(request):
+
+    if request.method == "POST":
+
+        new_profile = Profile(first=request.POST['first'],
+                            last=request.POST['last'],
+                            username=request.POST['username'],
+                            aboutyou=request.POST['aboutyou'])
+
+        new_profile.save()
+
+        return redirect('profile/Profile.html')
+
+    return render(request, 'profile/Profile.html')
 
 
-# req = requests.get(
-#     "https://api.edamam.com/search?q=chicken&app_id=0890373f&app_key=5c5cb11c82dd77cd32e808aa96589367").json()
+def update_profile(request, id):
+    to_update = Person.objects.get(id=id)
+    if request.method == "POST":
 
+        for key, value in request.POST.items():
 
-# Working with dataclass to try to make this work
+            if (value and key != "csrfmiddlewaretoken":
+                setattr(to_update, key, value)
 
-# @dataclass
-# class Detail:
-#     q: list
-# totalWeight: str
-# app_id: str
+        to_update.save()
 
-# it didn't work the way I thought it would, may revisit later
+        return redirect('directory')
 
-# This is how we get everything all at once! Thanks Justin!
+    context={
+        "id": id,
+        "update_profile": to_update
+    }
 
-# new = req.get('hits')
-
-# z = ["label", "yield", "calories"]
-# a = ["label", "quantity", "unit"]
-# n = ["FAT", "CHOCDF", "PROCNT"]
-
-# for x, y in enumerate(new):
-#     for i in z:
-#         print(new[x]['recipe'][i])
-#     for l in n:
-#         for c in a:
-#             print(new[x]['recipe']["totalNutrients"][l][c])
-
-
-# This is how we get the Label(Name) of the recipe
-# print(req.get("hits")[0].get('recipe').get('label'))
-
-# # This is how we get the Calories of the recipe
-# print(req.get("hits")[0].get('recipe').get((("calories"))))
-
-# # this is how we get the fat content
-# print(req.get("hits")[0].get('recipe').get((("totalNutrients"))).get("FAT"))
-# print(req.get("hits")[0].get('recipe').get(
-#     (("totalNutrients"))).get("FAT").get('label'))
-# print(req.get("hits")[0].get('recipe').get(
-#     (("totalNutrients"))).get("FAT").get('quantity'))
-# print(req.get("hits")[0].get('recipe').get(
-#     (("totalNutrients"))).get("FAT").get('unit'))
-
-# # this is how we get the carbs
-# print(req.get("hits")[0].get('recipe').get((("totalNutrients"))).get("CHOCDF"))
-# print(req.get("hits")[0].get('recipe').get(
-#     (("totalNutrients"))).get("CHOCDF").get('label'))
-# print(req.get("hits")[0].get('recipe').get(
-#     (("totalNutrients"))).get("CHOCDF").get('quantity'))
-# print(req.get("hits")[0].get('recipe').get(
-#     (("totalNutrients"))).get("CHOCDF").get('unit'))
-
-# # this is how we get the protein
-# print(req.get("hits")[0].get('recipe').get((("totalNutrients"))).get("PROCNT"))
-# print(req.get("hits")[0].get('recipe').get(
-#     (("totalNutrients"))).get("PROCNT").get('label'))
-# print(req.get("hits")[0].get('recipe').get(
-#     (("totalNutrients"))).get("PROCNT").get('quantity'))
-# print(req.get("hits")[0].get('recipe').get(
-#     (("totalNutrients"))).get("PROCNT").get('unit'))
-
-# # this is how we get the yield (number of servings)
-# print(req.get("hits")[0].get('recipe').get((("yield"))))
-# # This is how we get the Calories of the recipe
-# print(req.get("hits")[0].get('recipe').get((("calories"))))
+    return render(request, 'profile/Profile.html', context=context)

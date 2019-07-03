@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content4 %}
+{% block content %}
 
 <a href= {% url 'Pantry' %}><button>Go back to the Pantry</button></a>
 <br>
@@ -13,4 +13,20 @@
     {% endif %}
 </table>    
 
-{% endblock content4 %}
+{% endblock content %}
+
+
+{% comment %} new = req.get('hits')
+
+z = ["label", "yield", "calories"]
+a = ["label", "quantity", "unit"]
+n = ["FAT", "CHOCDF", "PROCNT"]
+
+for x, y in enumerate(new):
+    for i in z:
+        print(new[x]['recipe'][i])
+    for l in n:
+        for c in a:
+            print(new[x]['recipe']["totalNutrients"][l][c]) {% endcomment %}
+
+{% comment %} print(req.get("hits")[0].get('recipe').get('label')) {% endcomment %}

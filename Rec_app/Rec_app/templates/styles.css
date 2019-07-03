@@ -1,0 +1,18 @@
+.column {
+    float: left;
+    width: 33.33%;
+}
+/* Clear floats after the columns */
+.row:after {
+content: "";
+display: table;
+clear: both;
+}
+/* Full page background for profile page */
+#profile-main{
+background-image: url("../static/img/icons8-team-seDjj4dmC9s-unsplash.jpg") 50% 0 no-repeat fixed;
+height: 1000px;
+width: 1000px; 
+}
+ 
+ 

@@ -1,15 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<form method="POST" action="{% url "update" %}">
+<form method="POST" action="{% url "add" %}">
     {% csrf_token %}    
   <input type="text" name="first" value="Justin">
   <input type="text" name="last" value="Ahmann">
   <input type="text" name="username" value="jahmann">
   <input type="text" name="aboutyou" value="Testing">
-  <input type="submit" value="Update">
+  <input type="submit" value="Submit">
 </form>
+
 {% endblock content %}
-
-
-
