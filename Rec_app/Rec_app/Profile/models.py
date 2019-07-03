@@ -1,7 +1,11 @@
 from django.db import models
 
 
-# class User(first_name, last_name, about):
-#     self.first_name = first_name
-#     self.last_name = last_name
-#     self.about = about
+class Profile(models.Model):
+    first = models.CharField(max_length=50, default="")
+    last = models.CharField(max_length=50, default="")
+    username = models.CharField(max_length=150, default="")
+    aboutyou = models.CharField(max_length=255, default="")
+
+    def __str__(self):
+        return self.first

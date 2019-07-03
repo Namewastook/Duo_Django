@@ -68,3 +68,4 @@ def testing(request):
         }
 
         return render(request, "Recipe/recipe.html")
+
