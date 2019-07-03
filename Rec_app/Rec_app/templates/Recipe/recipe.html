@@ -5,10 +5,10 @@
 <a href= {% url 'Pantry' %}><button>Go back to the Pantry</button></a>
 <br>
 <br>
-<table>
+<table class="darkTable">
     {% if response %}
-    {% for label in response%}
-    <ol> {{label}} </ol>
+    {% for i in response %}
+    <td> {{i}} </td>
     {% endfor%}
     {% endif %}
 </table>    
