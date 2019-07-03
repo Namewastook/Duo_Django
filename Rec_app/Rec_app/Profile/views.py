@@ -2,8 +2,7 @@ import requests
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from dataclasses import dataclass
-from. import models
+from .models import Profile 
 
 
 # Create your views here.
@@ -13,42 +12,62 @@ def index(request):
     return render(request, "Profile/profile.html")
 
 
-@login_required(login_url="/")
-def index(request):
-    return render(request, "Profile/profile.html")
 
 
-req = requests.get(
-    "https://api.edamam.com/search?q=chicken&app_id=0890373f&app_key=5c5cb11c82dd77cd32e808aa96589367").json()
+def add_profile(request): 
+
+    if request.method =="POST":
+
+        new_profile = Profile(first=request.POST['first'],
+                            last=request.POST['last'],
+                            username=request.POST['username'],
+                            aboutyou=request.POST['aboutyou'])
+        
+        new_profile.save()        
+
+        context = {
+            to
+        }
+
+        return redirect('profile/Profile.html')
+
+    return render(request, 'profile/Profile.html')
+
+# def delete_profile(request, id):
+#     to_delete = Person.objects.get(id=id)
+#     to_delete.delete()
+#     return redirect('directory')
+
+#     context = {
+#         "id": id
+#     }
+    
+#     return render(request, 'profile/delete.html', context=context)
+
+def update_profile(request, id):
+    to_update = Person.objects.get(id=id)
+    if request.method == "POST":
+
+        
+        for key, value in request.POST.items():
+            
+            if (value and key != "csrfmiddlewaretoken"):
+                setattr(to_update, key, value)
+
+            to_update.save()
+
+        
+        return redirect('directory')
+
+    context = {
+        "id": id,
+        "update_profile":to_update
+    }
+    
+    return render(request, 'profile/Profile.html', context=context)
 
 
-# Working with dataclass to try to make this work
-
-# @dataclass
-# class Detail:
-#     q: list
-# totalWeight: str
-# app_id: str
-
-# it didn't work the way I thought it would, may revisit later
-
-# This is how we get everything all at once! Thanks Justin!
-
-new = req.get('hits')
-
-z = ["label", "yield", "calories"]
-a = ["label", "quantity", "unit"]
-n = ["FAT", "CHOCDF", "PROCNT"]
-
-for x, y in enumerate(new):
-    for i in z:
-        print(new[x]['recipe'][i])
-    for l in n:
-        for c in a:
-            print(new[x]['recipe']["totalNutrients"][l][c])
-
-
-# This is how we get the Label(Name) of the recipe
+# # This is how we get the Label(Name) of the recipe
 # print(req.get("hits")[0].get('recipe').get('label'))
 
 # # This is how we get the Calories of the recipe
